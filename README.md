@@ -48,3 +48,9 @@ The p flag is for mapping the port of the container to the machine,
 which is mapping port 8080 of the container to port 8080 of the machine.
 And the i flag is to make it interactive. Obviously, the t flag is for
 the name, like the previous command.
+
+### Kubernetes Cluster
+
+The first step to setting up a Kubernetes cluster is to make sure
+you've pushed the Docker image into DockerHub with this cmd:
+`docker push [name of docker image]`. Make sure everything is lowercase.
