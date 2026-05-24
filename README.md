@@ -109,4 +109,4 @@ Creation and Pushing, Updating Helm (K8s Manifests) via Github Actions.
 
 Continuous deployment will use something called ArgoCD with GitOps, and it will
 look for changes in the Values.yaml Helm file, and then run Helm to reflect those
-changes on the Kubernetes cluster. 
+changes on the Kubernetes cluster.
