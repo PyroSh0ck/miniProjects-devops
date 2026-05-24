@@ -54,3 +54,21 @@ the name, like the previous command.
 The first step to setting up a Kubernetes cluster is to make sure
 you've pushed the Docker image into DockerHub with this cmd:
 `docker push [name of docker image]`. Make sure everything is lowercase.
+
+You could configure Kubernetes to use a local image, but it is better
+practice to have it pull from an online registry.
+
+You have to write 3 configuration files (at the minimum) here, which are:
+deployment.yaml, service.yaml, and ingress.yaml. I talked a lil bit more about
+their usage in the files themselves.
+
+Afterward, you have to deploy your cluster, which you could do via AWS EKS.
+It does charge you $0.10 per hour so it will cost money. But after setting it up,
+you also need something called an Ingress Controller.
+
+#### Ingress Controller
+
+An ingress controller reads the ingress configuration file and then creates a 
+load balancer. A fun thing to note is that an ingress controller is usually written
+in Go. So it'll watch the ingress resource then redirect traffic to a load balancer,
+which in this case will be via nginx with an AWS load balancer (specifically a NLB)
