@@ -91,3 +91,10 @@ the chart.
 Templates contains all your manifest files with the Helm syntax, so you can use
 certain config files as a base, and just replace whatever you need to change with
 variables.
+
+#### Values.yaml
+
+This contains all the variables that are going to be used to replace any
+{{ .Values... }} in any of the kubernetes manifests. Currently, the only
+one that this project has used is {{ .Values.image.tag }}, which is currently
+"v1".
