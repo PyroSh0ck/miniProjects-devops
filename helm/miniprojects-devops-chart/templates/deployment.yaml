@@ -39,7 +39,10 @@ spec:
       containers:
         # name of the container, the Docker image for it, and the ports to open
         - name: miniprojects-devops
-          image: pyrosh0ck/miniprojects-devops:v1
+
+          # This means that whenever Helm is run, it'll look for the
+          # image.tag property in the values.yaml file
+          image: pyrosh0ck/miniprojects-devops:{{ .Values.image.tag }}
           ports:
             # The container will listen on port 8080
             - containerPort: 8080
