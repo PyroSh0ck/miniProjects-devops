@@ -40,10 +40,11 @@ the app.
 #### Docker commands
 
 The first thing to do is to create the docker image via:
-`docker build name:v1`. You can replace name w anything.
+`docker build -t name:v1`. You can replace name w anything.
 
 The next thing is to run that build:
 `docker run -p 8080:8080 -it name:v1`.
 The p flag is for mapping the port of the container to the machine,
 which is mapping port 8080 of the container to port 8080 of the machine.
-And the it flag is to make it interactive.
+And the i flag is to make it interactive. Obviously, the t flag is for
+the name, like the previous command.
