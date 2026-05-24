@@ -1,0 +1,29 @@
+# The point of this configuration file is to setup a service
+# called ingress, which handles, you guessed it, ingress traffic.
+# Basically any external traffic trying to access the app.
+# However, kubernetes ingress is pretty much outdated, so
+# it would probably be a good idea to swap to k8s gateway
+apiVersion: networking.k8s.io/v1
+
+# Once again, pretty self explanatory
+kind: Ingress
+metadata:
+  name: miniprojects-devops-ingress
+spec:
+  # The ingress class name tells the ingress controller
+  # that this is the type of ingress resource that you have
+  # to look for. You could also use somthing like aws or azure.
+  ingressClassName: nginx
+  rules:
+    - host: miniprojects-devops.local
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                # naming the service
+                name: miniprojects-devops
+                port:
+                  # This is for handling http traffic
+                  number: 80

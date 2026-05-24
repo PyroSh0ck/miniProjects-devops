@@ -1,0 +1,24 @@
+# Once again, we have the api version for the K8s service
+# The api version will just be v1 this time
+apiVersion: v1
+# This is a config file for a Kubernetes "Service"
+kind: Service
+# This one is pretty self explanatory too
+# I did want to make sure to keep the app label
+# the same.
+metadata:
+  name: miniprojects-devops-service
+  labels:
+    app: miniprojects-devops
+spec:
+  # Automatically selects based on labels
+  # So you don't have to use the "labels" property
+  selector:
+    app: miniprojects-devops
+  ports:
+    # Handles HTTP requests
+    - port: 80
+      # Target port of the docker containers
+      targetPort: 8080
+  # Assigns the service the kubernetes cluster ip address
+  type: ClusterIP

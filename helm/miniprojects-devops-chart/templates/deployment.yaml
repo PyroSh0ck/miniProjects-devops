@@ -1,0 +1,45 @@
+# This is the API version of Kubernetes, and app/v1 is the standard.
+apiVersion: apps/v1
+# The "kind" of Kubernetes resources, which states that this config
+# file is defining a "Deployment"
+kind: Deployment
+
+## This has identifying information
+metadata:
+  name: miniprojects-devops-deployment
+  labels:
+    # these are basically just tags for organizing Kubernetes deployments.
+    # Any deployment.yaml file with the same labels are used for the same task
+    app: miniprojects-devops
+spec:
+  # Specifically, I want to run 3 "replicas"/pod instances of the app
+  replicas: 3
+
+  # This is the selector, its used to find all of the other deployments
+  # with the same criteria. In this case, I used the matchLabels property
+  # which checks for other projects with the label "miniprojects-devops"
+  # for app, which is the same one this deployment file has
+  selector:
+    matchLabels:
+      app: miniprojects-devops
+
+  # Now this one is for the duplicates. Since there are 3 pod instances
+  # we have to define the configuration for each. This is the "template"
+  # for each pod. And I set the metadata of each's deployment file to have
+  # the same label, along with the name of each container, and the image
+  # that it'll be using. Lastly, I also specify the port.
+  template:
+    metadata:
+      labels:
+        app: miniprojects-devops
+    spec:
+      # These are the containers that are going to run in the pod.
+      # For this project, there's only going to be one container,
+      # but other projects could have multiple
+      containers:
+        # name of the container, the Docker image for it, and the ports to open
+        - name: miniprojects-devops
+          image: pyrosh0ck/miniprojects-devops:v1
+          ports:
+            # The container will listen on port 8080
+            - containerPort: 8080
