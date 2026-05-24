@@ -80,3 +80,14 @@ Like you had one for dev, one for prod, one for test, like so:
 pyrosh0ck/miniprojects-devops:dev/prod/test/etc.
 You wouldn't bother creating a separate K8s manifest folder for each of them,
 which is what Helm helps you out with.
+
+#### Chart.yaml
+
+The Chart.yaml file basically just provides metadata about the information regarding
+the chart.
+
+#### Templates
+
+Templates contains all your manifest files with the Helm syntax, so you can use
+certain config files as a base, and just replace whatever you need to change with
+variables.
