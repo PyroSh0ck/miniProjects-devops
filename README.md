@@ -54,3 +54,6 @@ the name, like the previous command.
 The first step to setting up a Kubernetes cluster is to make sure
 you've pushed the Docker image into DockerHub with this cmd:
 `docker push [name of docker image]`. Make sure everything is lowercase.
+
+You could configure Kubernetes to use a local image, but it is better
+practice to have it pull from an online registry.
