@@ -68,7 +68,15 @@ you also need something called an Ingress Controller.
 
 #### Ingress Controller
 
-An ingress controller reads the ingress configuration file and then creates a 
+An ingress controller reads the ingress configuration file and then creates a
 load balancer. A fun thing to note is that an ingress controller is usually written
 in Go. So it'll watch the ingress resource then redirect traffic to a load balancer,
 which in this case will be via nginx with an AWS load balancer (specifically a NLB)
+
+### Helm
+
+Now what if, hypothetically, you had multiple Docker images for different stages.
+Like you had one for dev, one for prod, one for test, like so:
+pyrosh0ck/miniprojects-devops:dev/prod/test/etc.
+You wouldn't bother creating a separate K8s manifest folder for each of them,
+which is what Helm helps you out with.
