@@ -1,11 +1,11 @@
 # This is the newest version I could find from the docker container registry
 # Since this is a multi-stage docker file, you have to write an alias for the
 # first stage. In this case, the alias is base
-FROM golang:1.26 as base
+FROM golang:1.26 AS base
 
 # Just tell docker to run any of its commands in this directory
 # You can pretty much call it anything afaik
-WORKDIR /docker
+WORKDIR /base
 
 # From now on, all the commands here will be executed in the work directory
 # We have to copy the go.mod since this file contains all the dependencies
@@ -29,3 +29,17 @@ RUN go build -o main .
 # And be done, however we want to use two stages
 # so that we can make it distroless, which will
 # reduce the size and improve security
+
+
+# Second stage, which is the distroless image
+FROM gcr.io/distroless/base-debian13:nonroot
+
+# We want to take the binary from base, and put it in the current directory
+# I changed the working directory to docker2, to avoid warnings.
+WORKDIR /build
+COPY --from=base /base/main .
+COPY --from=base /base/pages ./pages
+
+# Now we just expose the port and run the binary
+EXPOSE 8080
+CMD ["./main"]
