@@ -98,3 +98,15 @@ This contains all the variables that are going to be used to replace any
 {{ .Values... }} in any of the kubernetes manifests. Currently, the only
 one that this project has used is {{ .Values.image.tag }}, which is currently
 "v1".
+
+### Continuous Integration (CI)
+
+Basically, whenever a developer commits a change, the CI/CD pipeline will automatically
+run 4 stages (for CI): Build and Unit Tests, Static Code Analysis, Docker Image
+Creation and Pushing, Updating Helm (K8s Manifests) via Github Actions.
+
+### Continuous Deployment (CD)
+
+Continuous deployment will use something called ArgoCD with GitOps, and it will
+look for changes in the Values.yaml Helm file, and then run Helm to reflect those
+changes on the Kubernetes cluster.
