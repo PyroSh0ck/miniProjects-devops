@@ -5,7 +5,7 @@ replicaCount: 1
 image:
   repository: pyrosh0ck/miniprojects-devops
   pullPolicy: IfNotPresent
-  tag: "v1"
+  tag: "
 
 ingress:
   enabled: false
