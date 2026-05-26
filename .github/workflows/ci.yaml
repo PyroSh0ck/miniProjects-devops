@@ -77,7 +77,7 @@ jobs:
       - name: Update tag in helm chart
         # replace "tag: ..." with "tag: [correct id]"
         run: |
-          sed -i 's/tag: .*/tag: ${{github.runc_id}}"/' helm/miniprojects-devops-chart/values.yaml
+          sed -i 's/tag: .*/tag: "${{github.runc_id}}"/' helm/miniprojects-devops-chart/values.yaml
 
       - name: Commit and push changes to github
         run: |
